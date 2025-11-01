@@ -1,7 +1,7 @@
-import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
-import jsconfigPaths from 'vite-jsconfig-paths';
 import path from 'path';
+import { defineConfig, loadEnv } from 'vite';
+import jsconfigPaths from 'vite-jsconfig-paths';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -34,8 +34,9 @@ export default defineConfig(({ mode }) => {
     ],
     build: {
       chunkSizeWarningLimit: 1000,
-      sourcemap: true,
+      sourcemap: false,
       cssCodeSplit: true,
+      minify: 'terser',
       rollupOptions: {
         output: {
           chunkFileNames: 'js/[name]-[hash].js',
@@ -48,18 +49,14 @@ export default defineConfig(({ mode }) => {
             if (/\.(woff2?|eot|ttf|otf)$/.test(name)) return `fonts/[name]-[hash].${ext}`;
             return `assets/[name]-[hash].${ext}`;
           }
-          // manualChunks: { ... } // Add if you want custom chunk splitting
         }
       },
-      // Only drop console/debugger in production
-      ...(mode === 'production' && {
-        esbuild: {
-          drop: ['console', 'debugger'],
-          pure: ['console.log', 'console.info', 'console.debug', 'console.warn']
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true
         }
-      })
-      // No need to set build.target unless you need to support older browsers
-      // target: 'baseline-widely-available', // This is now the default
+      }
     },
     optimizeDeps: {
       include: ['@mui/material/Tooltip', 'react', 'react-dom', 'react-router-dom']
