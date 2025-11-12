@@ -1,0 +1,4 @@
+userId,testDate,height,weight,waistCircumference,systolicBP,diastolicBP,restingHeartRate,fastingGlucose,hba1c,totalCholesterol,ldlCholesterol,hdlCholesterol,triglycerides,serumCreatinine,egfr,alt,ast,hemoglobin,tsh,crp,vitaminD,vitaminB12,smokingStatus,alcoholConsumption,physicalActivityMinutes,dietQuality,annualCheckup
+user-uuid-1,2024-01-15,170,70,85,120,80,72,95,5.5,180,100,50,150,1.0,90,25,30,14,2.5,1.5,30,400,never,moderate,150,balanced,true
+user-uuid-2,2024-01-16,165,65,80,115,75,68,90,5.3,175,95,55,140,0.9,95,22,28,13.5,2.3,1.2,35,450,never,none,180,excellent,true
+
