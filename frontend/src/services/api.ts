@@ -1,26 +1,26 @@
-import axios, { AxiosInstance, AxiosError, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 
 // Base API URL - matches backend PORT from .env
-const API_BASE_URL = 'http://localhost:5000';
-
+// const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://j7s103bj-5000.asse.devtunnels.ms';
 // Create Axios instance
 const api: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   },
-  timeout: 10000, // 10 seconds
+  timeout: 10000 // 10 seconds
 });
 
 // Request interceptor - Attach JWT token to all requests
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = localStorage.getItem('authToken');
-    
+
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    
+
     return config;
   },
   (error: AxiosError) => {
@@ -39,7 +39,7 @@ api.interceptors.response.use(
       // Clear token and redirect to login
       localStorage.removeItem('authToken');
       localStorage.removeItem('user');
-      
+
       // Only redirect if not already on login page
       if (window.location.pathname !== '/login') {
         window.location.href = '/login';
@@ -68,4 +68,3 @@ api.interceptors.response.use(
 
 export default api;
 export { API_BASE_URL };
-
