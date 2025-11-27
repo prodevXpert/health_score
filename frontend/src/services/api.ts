@@ -2,7 +2,8 @@ import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'ax
 
 // Base API URL - matches backend PORT from .env
 // const API_BASE_URL = 'http://localhost:5000';
-const API_BASE_URL = 'https://j7s103bj-5000.asse.devtunnels.ms';
+// Production API (Railway)
+const API_BASE_URL = 'https://healthscore-production.up.railway.app/api';
 // Create Axios instance
 const api: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,

@@ -1,0 +1,33 @@
+# ----------------------------------------
+# Hostinger SPA Frontend Deployment (React / Vue / Angular)
+# ----------------------------------------
+
+# Use UTF-8 encoding
+AddDefaultCharset UTF-8
+
+# Enable URL rewrite engine
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # If a file or directory exists, serve it directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  
+  # Otherwise, send all requests to index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# ----------------------------------------
+# Cache static files (optional but recommended)
+# ----------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType text/javascript "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpg "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+</IfModule>
